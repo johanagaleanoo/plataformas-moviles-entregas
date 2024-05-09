@@ -1,0 +1,33 @@
+/* ejercicio Nº1 */
+.titulo {
+    text-align: center;
+}
+/* ejercicio Nº2 */
+.importante, .novelas, .fuente {
+    font-family: serif;
+}
+/* ejercicio Nº3 */
+html #primer_parrafo {
+    background-color: #cee;
+}
+/* ejercicio Nº4 */
+#primer_parrafo em {
+    color: #933;
+}
+/* ejercicio Nº5 */
+a {
+    outline: 1px solid #333;
+}
+/* ejercicio Nº6 */
+p.fuente {
+    opacity: 100% !important;
+}
+/* ejercicio Nº7 */
+p.fuente a {
+    color: #000 !important;
+}
+/* ejercicio Nº8 */
+.complicado {
+    font-weight: 900;
+    color: #c62 !important;
+}

@@ -1,0 +1,63 @@
+/* ejercicio Nº1 */
+@media (min-width <= 400px){
+    body {
+        background-color: rgb(40, 60, 80);
+    }
+}
+/* ejercicio Nº2 */
+@media (max-width <= 800px){
+    h1 {
+        text-align: center;
+    }
+}
+/* ejercicio Nº3 */
+@media (orientation: landscape){
+    article {
+        max-width: 50ch;
+    }
+}
+/* ejercicio Nº4 */
+@media (min-height: 200px){
+    h1 {
+        background-color: #212121;
+    }
+}
+/* ejercicio Nº5 */
+@media print {
+    p {
+        font-family: serif;
+    }
+}
+/* ejercicio Nº6 */
+@media (prefers-color-scheme: light){
+    body, h1 {
+        background-color: #ddd !important;
+        color: #111 !important;
+    }
+}
+/* ejercicio Nº7 */
+@media screen and (hover: none){
+    a {
+        background-color: #212;
+        padding: 2px 5px;
+    }
+}
+/* ejercicio Nº8 */
+@media (800px<= width <=900px){
+    img {
+        visibility: hidden !important;
+    }
+}
+/* ejercicio Nº9 */
+@media (200px<= width <=400px){
+    img {
+        object-fit: cover;
+        height: 400px;
+    }
+}
+/* ejercicio Nº10 */
+@media (resolution: 2dppx){
+    article {
+        background-color: #667;
+    }
+}
