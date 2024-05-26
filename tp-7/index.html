@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> T.P N°7: funciones en javascript </title>
+</head>
+<body>
+    <p>
+        completar con la implementación de las funciones correspondientes
+    </p>
+
+    <script type="text/javascript">
+        // numeros
+        console.log ("numeros");
+
+        // ejercicio N°1:
+        // implementar una función "suma" que retorne la suma de dos numeros
+        // ejemplo: 
+        // suma (2, 3), retorna 5
+        function suma (numero_1, numero_2){
+            return numero_1 + numero_2;
+        }
+        console.log ("ejercicio N°1");
+        console.log ("suma: ", suma (10, 5));
+
+        // ejercicio N°2:
+        // implementr una función "elevar_al_cubo" que eleve al cubo un numero 
+        // ejemplo:
+        // elevar_al_cubo (3), retorna 27
+        function elevar_al_cubo (numero){
+            return numero * 9;
+        }
+        console.log ("ejercicio N°2");
+        console.log ("elevar al cubo: ", elevar_al_cubo (3));
+
+        // ejercicio N°3:
+        // implementar una función "resto_division_entera" para devolver el resto de una division entera entre un dividendo y un divisor
+        // ejemplo: 
+        // resto_division_entera (3, 2), retorna 1
+        function resto_division_entera (numero_1, numero_2){
+            return numero_1 / numero_2;
+        }
+        console.log ("ejercicio N°3");
+        console.log ("division: ", resto_division_entera (20, 2));
+
+        // ejercicio N°4:
+        // implementar una función "numero_pi" para devolver el numero PI
+        // ejemplo:
+        // numero_pi (), retorna 3, 14...
+        function numero_pi (){
+            return Math.PI;
+        }
+        console.log ("ejercicio N°4");
+        console.log ("numero PI: ", numero_pi ());
+
+        // ejercicio N°5:
+        // implementar una función "numero_random" para devolver un numero random/aleatorio
+        // ejemplo: numero_random, retorna 0, 123...
+        function numero_random (){
+            return Math.random();
+        }
+        console.log ("ejercicio N°5")
+        console.log ("numero random: ", numero_random());
+
+        // ejercicio N°6:
+        // implementar una función "mejor_numero_random" para devolver un número random entre 2 valores recibidos como parámetros
+        // ejemplo mejor_numero_random (1, 6), retorna 3
+        function mejor_numero_random (numero_minimo, numero_maximo){
+            return Math.random () * (numero_maximo - numero_minimo) + numero_minimo;
+        }
+        console.log ("ejercicio N°6");
+        console.log ("mejor numero random: ", mejor_numero_random (0, 100));
+
+        console.log ("\n");
+
+        // cadena de caracteres
+        console.log ("cadena de caracteres");
+
+        // ejercicio N°7:
+        // implementar una función "transformar_mayuscula" que transforme a mayúscula la palabra recibida como parametro
+        // ejemplo: transformar_mayuscula ("plataformas moviles"), retorna "PLATAFORMAS MOVILES"
+        function transformar_mayuscula (){
+            return "plataformas moviles".toUpperCase();
+        }
+        console.log ("ejercicio N°7");
+        console.log ("plataformas moviles a mayúscula: ", transformar_mayuscula ());
+
+        // ejercicio N°8:
+        // implementar una función "primera_letra" que nos devuelva la inicial de la palabra recibida como parametro
+        // ejemplo: primera_letra ("plataformas"), retorna "p"
+        function primera_letra (p_letra){
+            return p_letra.charAt (0);
+        }
+        console.log ("ejercicio N°8");
+        console.log ("primera letra: ", primera_letra ("johana"));
+
+        // ejercicio N°9:
+        // implentar una función "ultima_letra" que nos devuelva la letra final la palabra recibida como parámetro
+        // ejemplo: ultima_letra ("plataformas moviles"), retorna 2
+        function ultima_letra (u_letra){
+            return u_letra.charAt (u_letra.length - 1);
+        }
+        console.log ("ejercicio N°9");
+        console.log ("ultima letra: ", ultima_letra ("johana"));
+
+        // ejercicio N°10:
+        // implementar una función "primera_letra_mayuscula" que devuelve la palabra original con su primera letra en mayúscula
+        // ejemplo: primera_letra_mayuscula ("plataformas"), retorna "Plataformas"
+        function primera_letra_mayuscula (p_l_mayuscula){
+            const primera_letra= p_l_mayuscula.charAt (0);
+            const resto_letra= p_l_mayuscula.slice (1);
+            return primera_letra.toUpperCase () + resto_letra;
+        }
+        console.log ("ejercicio N°10");
+        console.log ("primera letra mayuscula: ", primera_letra_mayuscula ("plataformas"));
+
+        // ejercicio N°11:
+        //  implementar una función "palabra_lista_letras" que dada una palabra me retorne un listado de sus letras
+        // ejemplo: palabra_lista_letras ("hola"), retorna ['h', 'o', 'l', 'a'];
+        function palabra_lista_letras (){
+            return "plataformas moviles".split ('');
+        }
+        console.log ("ejercicio N°11");
+        console.log ("listado de letras: ", palabra_lista_letras ());
+
+        // ejercicio N°12:
+        // implementar una función "lista_Letras_palabra" que dado un listado de letras, devuelva una palabra
+        // ejemplo: listado_letras_palabra (["h", "o", "l", "a"]), retorna "hola";
+        function lista_Letras_palabra (){
+            return ['p', 'l', 'a', 't', 'a', 'f', 'o', 'r', 'm', 'a', 's'].join ('');
+        }
+        console.log ("ejercicio N°12");
+        console.log ("lista de letras a palabras: ", lista_Letras_palabra ());
+
+        // ejercicio N°13:
+        // implementar una función "palabra_invertida" que devuelva la palabra invertida
+        // ejemplo: palabra_invertida ("hola"), retorna "aloh";
+        function palabra_invertida (){
+            return "johana".split ('').reverse ().join ('');
+        }
+        console.log ("ejercicio N°13");
+        console.log ("palabra invertida: ", palabra_invertida ());
+    </script>
+</body>
+</html>
