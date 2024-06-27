@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title> editor de texto </title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <style>
+        body {
+            background-color: darkblue;
+            color: white;
+        }
+        .card {
+            background-color: cornflowerblue;
+            color: white;
+        }
+        .btn-active {
+            background-color: darkblue !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="container my-1 my-sm-2 my-md-4 my-lg-5">
+        <h1>
+            editor de texto
+        </h1>
+
+        <div class="card">
+            <div class="card-body">
+                <h2>
+                    texto
+                </h2>
+
+                <p class="texto" id="texto">
+                    lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec elementum auctor libero, vel imperdiet est. Etiam blandit facilisis ex, nec cursus metus pharetra quis. Fusce imperdiet nisl nibh, ac aliquet ante elementum vitae
+                </p>
+
+                <hr class="hr">
+
+                <h2>
+                    editar texto
+                </h2>
+                <div class="mb-3">
+                    <input type="text" id="input-texto" class="form-control" placeholder="actualizar texto">
+                    <button id="btn-editar-texto" class="btn btn-outline-light mt-2"> 
+                        actualizar texto
+                    </button>
+                </div>
+                <div class="col-12 col-md-3 my-1">
+                    <input type="number" id="input-tamaño" class="form-control" placeholder="actualizar el tamaño">
+                    <button id="btn-tamaño" class="btn btn-outline-light mt-2" data-funcion="tamaño">
+                        cambiar tamaño
+                    </button>
+                </div>
+                
+                <hr class="hr">
+
+                <h2>
+                    opciones de formato
+                </h2>
+                <div class="row">
+                    <div class="col-12 col-md-3 my-1">
+                        <button id="btn-negrita" class="btn d-block w-100 btn-outline-light" data-funcion="negrita">
+                            bold (negrita)
+                        </button>
+                    </div>
+                    <div class="col-12 col-md-3 my-1">
+                        <button id="btn-cursiva" class="btn d-block w-100 btn-outline-light" data-funcion="cursiva">
+                            italic (cursiva)
+                        </button>
+                    </div>
+                    <div class="col-12 col-md-3 my-1">
+                        <button id="btn-subrayado" class="btn d-block w-100 btn-outline-light" data-funcion="subrayado">
+                            underline (subrayado)
+                        </button>
+                    </div>
+                    <div class="col-12 col-md-3 my-1">
+                        <button id="btn-color" class="btn d-block w-100 btn-outline-light" data-funcion="color">
+                            cambiar color
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        // cambiar el estado del boton
+        function cambiar_estado (boton, estado){
+            if (estado) {
+                boton.classList.add ("btn-active");
+            } 
+            else {
+                boton.classList.remove ("btn-active");
+            }
+        }
+
+        // texto a negrita
+        function negrita (){
+            const texto= document.getElementById ("texto");
+            texto.style.fontWeight= texto.style.fontWeight === "bold" ? "normal" : "bold";
+            cambiar_estado (document.getElementById ("btn-negrita"), texto.style.fontWeight === "bold");
+        }
+
+        // texto a cursiva
+        function cursiva (){
+            const texto= document.getElementById ("texto");
+            texto.style.fontStyle= texto.style.fontStyle === "italic" ? "normal" : "italic";
+            cambiar_estado (document.getElementById ("btn-cursiva"), texto.style.fontStyle === "italic");
+        }
+
+        // texto subrayado
+        function subrayado (){
+            const texto= document.getElementById ("texto");
+            texto.style.textDecoration= texto.style.textDecoration === "underline" ? "none" : "underline";
+            cambiar_estado (document.getElementById ("btn-subrayado"), texto.style.textDecoration === "underline");
+        }
+
+        // cambiar el color del boton
+        function color (){
+            const texto= document.getElementById ("texto");
+            texto.style.color= texto.style.color === "darkslateblue" ? "darkslateblue" : "darkslateblue";
+            cambiar_estado (document.getElementById ("btn-color"), texto.style.color === "darkslateblue");
+        }
+
+        // cambiar el tamaño del texto
+        function tamaño (){
+            const texto= document.getElementById ("texto");
+            const tamaño= document.getElementById ("input-tamaño").value;
+            texto.style.fontSize= tamaño + "px";
+        }
+
+        // actualizar/cambiar el texto
+        function actualizar_texto (){
+            const nuevo= document.getElementById ("input-texto").value;
+            document.getElementById ("texto").innerText= nuevo;
+        }
+
+        function handler_boton(e) {
+            const boton= e.target.dataset.funcion;
+
+            switch (boton) {
+                case 'negrita':
+                    negrita ();
+                    break;
+                case 'cursiva':
+                    cursiva ();
+                    break;
+                case 'subrayado':
+                    subrayado ();
+                    break;
+                case 'color':
+                    color ();
+                    break;
+                case 'tamaño':
+                    tamaño ();
+                    break;
+            }
+        }
+
+        document.querySelectorAll ("button.btn").forEach (e => e.addEventListener ("click", handler_boton));
+        document.getElementById ("btn-editar-texto").addEventListener ("click", actualizar_texto);
+    </script>
+</body>
+</html>
