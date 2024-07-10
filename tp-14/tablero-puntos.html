@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title> tablero de puntos </title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+</head>
+<style>
+    body {
+        background-color: #212121;
+        color: white;
+    }
+    .card {
+        background-color: #212121;
+        border-color: grey;
+        color: white;
+    }
+</style>
+<body>
+    <div class="container my-1 my-sm-2 my-md-4 my-lg-5">
+        <h1>
+            tablero de puntos
+        </h1>
+        <div class="card">
+            <div class="card-body">
+                <div class="row text-center">
+                    <div class="col-5">
+                        <span class="display-1" id="local-puntos"> 0 </span>
+                        <p class="m-0"> local </p>
+                    </div>
+                    <div class="col-2">
+                        <span class="display-1"> : </span>
+                    </div>
+                    <div class="col-5">
+                        <span class="display-1" id="visitante-puntos" > 0 </span>
+                        <p class="m-0"> visitante </p>
+                    </div>
+                </div>
+
+                <hr class="hr">
+
+                <h2>
+                    actualizar contador
+                </h2>
+                <div class="row">
+                    <p class="h3"> locales </p>
+                    <div class="col-12 col-sm-3 my-1">
+                        <button class="btn d-block w-100 btn-outline-primary" id="mas-local"> + </button>
+                    </div>
+                    <div class="col-12 col-sm-3 my-1">
+                        <button class="btn d-block w-100 btn-outline-primary" id="menos-local"> - </button>
+                    </div>
+
+                    <p class="h3"> visitantes </p>
+                    <div class="col-12 col-sm-3 my-1">
+                        <button class="btn d-block w-100 btn-outline-primary" id="mas-visitante"> + </button>
+                    </div>
+                    <div class="col-12 col-sm-3 my-1">
+                        <button class="btn d-block w-100 btn-outline-primary" id="menos-visitante"> - </button>
+                    </div>
+                    
+                    <div class="row mt-3">
+                        <div class="col-12 col-sm-3 my-1">
+                            <button class="btn d-block w-100 btn-outline-secondary" id="reiniciar">
+                                reiniciar
+                            </button>
+                        </div>
+                        <div class="col-12 col-sm-3 my-1">
+                            <button class="btn d-block w-100 btn-outline-warning" id="intercambiar">
+                                intercambiar
+                            </button>
+                        </div>
+                        <div class="col-12 col-sm-3 my-1">
+                            <button class="btn d-block w-100 btn-outline-danger" id="finalizar">
+                                finalizar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+    <script>
+        let local_puntos= 0;
+        let visitante_puntos= 0;
+
+        // local
+        const local= document.getElementById ("local-puntos");
+        const mas_local= document.getElementById ("mas-local");
+        const menos_local= document.getElementById ("menos-local");
+
+        // visitante
+        const visitante= document.getElementById ("visitante-puntos");
+        const mas_visitante= document.getElementById ("mas-visitante");
+        const menos_visitante= document.getElementById ("menos-visitante");
+
+        // botones
+        const intercambiar= document.getElementById ("intercambiar");
+        const finalizar= document.getElementById ("finalizar");
+        const reiniciar= document.getElementById ("reiniciar");
+
+        const actualizar_puntos= () => {
+            local.textContent= local_puntos;
+            visitante.textContent= visitante_puntos;
+        };
+
+        // puntos: locales
+        mas_local.addEventListener ("click", () => {
+            local_puntos++;
+            actualizar_puntos ();
+        });
+
+        menos_local.addEventListener ("click", () => {
+            if (local_puntos > 0){
+                local--;
+                actualizar_puntos ();
+            }
+        });
+
+        // puntos: visitantes
+        mas_visitante.addEventListener ("click", () => {
+            visitante_puntos++;
+            actualizar_puntos ();
+        });
+
+        menos_visitante.addEventListener ("click", () => {
+            if (visitante_puntos > 0){
+                visitante_puntos--;
+                actualizar_puntos ();
+            }
+        });
+
+        // botones 
+        intercambiar.addEventListener ("click", () => {
+            [local_puntos, visitante_puntos]= [visitante_puntos, local_puntos];
+            actualizar_puntos ();
+        });
+
+        finalizar.addEventListener ("click", () => {
+            mas_local.disabled= true;
+            menos_local.disabled= true;
+            mas_visitante.disabled= true;
+            menos_visitante.disabled= true;
+        });
+
+        reiniciar.addEventListener ("click", () => {
+            local_puntos= 0;
+            visitante_puntos= 0;
+            actualizar_puntos ();
+
+            mas_local.disabled= false;
+            menos_local.disabled= false;
+            mas_visitante.disabled= false;
+            menos_visitante.disabled= false;
+        });
+    </script>
+</body>
+</html>
