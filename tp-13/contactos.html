@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title> lista de contactos </title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+</head>
+<style>
+    body {
+        background-color: #212121;
+        color: white;
+    }
+    .card {
+        background-color: #212121;
+        border-color: grey;
+        color: white;
+    }
+</style>
+<body>
+    <div class="container my-1 my-sm-2 my-md-4 my-lg-5">
+        <h1>
+            lista de contactos
+        </h1>
+        <div class="card">
+            <div class="card-body">
+                <h2>
+                    contactos
+                </h2>
+
+                <div class="row mb-3">
+                    <p class="h3">
+                        ordenar por:
+                    </p>
+                    <div class="col-6">
+                        <button id="ordenar-nombre" class="btn btn-outline-secondary w-100">
+                            nombre
+                        </button>
+                    </div>
+                    <div class="col-6">
+                        <button id="ordenar-apellido" class="btn btn-outline-secondary w-100">
+                            apellido
+                        </button>
+                    </div>
+                    <div class="col-12 mt-3">
+                        <button id="contacto-favoritos" class="btn btn-outline-secondary w-100"> 
+                            favoritos
+                        </button>
+                    </div>
+                </div>
+
+                <ul id="lista-contactos" class="list-group"></ul>
+
+                <hr class="hr">
+
+                <h2>
+                    nuevo contacto
+                </h2>
+                <form id="form-contacto">
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" name="nombre" id="input-nombre" placeholder="Nombre" aria-label="Nombre">
+                        <input type="text" class="form-control" name="apellido" id="input-apellido" placeholder="Apellido" aria-label="Apellido">
+                        <input type="text" class="form-control" name="telefono" id="input-telefono" placeholder="Teléfono" aria-label="Teléfono">
+                    </div>
+                    <button class="btn btn-outline-secondary" type="submit">
+                        agregar contacto
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        let contactos= [
+            {
+                nombre: "juan", 
+                apellido: "perez", 
+                telefono: "123456789", 
+                favorito: false 
+            }
+        ];
+
+        let mostrar_favoritos= false;
+
+        function agregar_contacto (nombre, apellido, telefono){
+            contactos.push ({ nombre, apellido, telefono, favorito: false });
+
+            mostrar_contactos ();
+        }
+
+        function mostrar_contactos (){
+            const lista_contactos= document.getElementById ("lista-contactos");
+            lista_contactos.innerHTML= "";
+
+            let contactos_mostrar= contactos;
+
+            if (mostrar_favoritos){
+                contactos_mostrar= contactos.filter (contacto => contacto.favorito);
+            }
+
+            contactos_mostrar.forEach ((contacto, index) => {
+                const lista= document.createElement ("li");
+                lista.classList.add ("list-group-item", "d-flex", "justify-content-between", "align-items-center");
+
+                const contact= document.createElement ("div");
+                contact.textContent= `${ contacto.nombre } ${ contacto.apellido } [ telefono: ${ contacto.telefono } ]`;
+
+                const botones= document.createElement ("div");
+                const favorito= document.createElement ("button");
+                const eliminar= document.createElement ("button");
+
+                favorito.classList.add ("btn", "btn-sm", "btn-outline-success", "me-2");
+                favorito.textContent= contacto.favorito ? "★" : "☆";
+
+                favorito.addEventListener ("click", () => {
+                    contacto.favorito= !contacto.favorito;
+
+                    mostrar_contactos();
+                });
+
+                eliminar.classList.add ("btn", "btn-sm", "btn-outline-danger");
+                eliminar.textContent= "eliminar";
+
+                eliminar.addEventListener ("click", () => {
+                    contactos.splice (index, 1);
+
+                    mostrar_contactos();
+                });
+
+                botones.appendChild (favorito);
+                botones.appendChild (eliminar);
+
+                lista.appendChild (contact);
+                lista.appendChild (botones);
+
+                lista_contactos.appendChild (lista);
+            });
+        }
+
+        function enviar_formulario (e){
+            // prevenir el envio del formulario
+            e.preventDefault ();
+
+            const input_nombre= e.target.querySelector ("#input-nombre");
+            const input_apellido= e.target.querySelector ("#input-apellido");
+            const input_telefono= e.target.querySelector ("#input-telefono");
+
+            const nombre= input_nombre.value;
+            const apellido= input_apellido.value;
+            const telefono= input_telefono.value;
+
+            input_nombre.value= "";
+            input_apellido.value= "";
+            input_telefono.value= "";
+
+            agregar_contacto (nombre, apellido, telefono);
+        }
+
+        document.querySelector ("form").addEventListener ("submit", enviar_formulario);
+
+        document.getElementById ("ordenar-nombre").addEventListener ("click", () => {
+            contactos.sort ((a, b) => a.nombre.localeCompare (b.nombre)); 
+
+            mostrar_contactos();
+        });
+
+        document.getElementById ("ordenar-apellido").addEventListener ("click", () => {
+            contactos.sort ((a, b) => a.apellido.localeCompare (b.apellido));
+
+            mostrar_contactos ();
+        });
+
+        document.getElementById ("mostrar-favoritos").addEventListener ("click", () => {
+            mostrar_favoritos= !mostrar_favoritos;
+            
+            mostrar_contactos ();
+        });
+
+        mostrar_contactos ();
+    </script>
+</body>
+</html>
